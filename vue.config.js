@@ -4,7 +4,7 @@ function resolve(dir) {
   return path.join(__dirname, dir)
 }
 const name = 'gating'
-const port = process.env.port || process.env.npm_config_port || 8080
+const port = process.env.port || process.env.npm_config_port || 8848
 
 module.exports = {
   publicPath: '/',
@@ -22,7 +22,7 @@ module.exports = {
       errors: true
     },
     // 后续加上
-    // before: require("./mocks"),
+    before: require('./mocks'),
     proxy: {
       '/api': {
         target: 'https://test.com/api',
