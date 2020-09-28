@@ -12,7 +12,8 @@ module.exports = {
   assetsDir: 'static',
   lintOnSave: process.env.NODE_ENV === 'development',
   productionSourceMap: false,
-  parallel: require('os').cpus().length > 1,
+  // 默认值，仅作用于生产构建，是否启用多进程打包
+  // parallel: require('os').cpus().length > 1,
   devServer: {
     port: port,
     open: true,
@@ -67,7 +68,7 @@ module.exports = {
     config.plugin('preload').tap(() => [
       {
         rel: 'preload',
-        // 添加忽略 runtime.js
+        // 添加忽略 runtime.js，vue-cli默认没有 runtime
         fileBlacklist: [/\.map$/, /hot-update\.js$/, /runtime\..*\.js$/],
         include: 'initial'
       }
