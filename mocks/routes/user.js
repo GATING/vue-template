@@ -28,7 +28,7 @@ module.exports = [
     type: 'post',
     response: () => {
       return {
-        code: 20000,
+        code: 200,
         data: 'success'
       }
     }

@@ -9,7 +9,7 @@ const flatten = arr =>
 
 const Mock = require('mockjs')
 
-const mocks = flatten(glob.sync(resolve(__dirname, '!(index).js')).map(item => require(item)))
+const mocks = flatten(glob.sync(resolve(__dirname, 'routes/**/*.js')).map(item => require(item)))
 const mockDir = resolve(process.cwd(), 'mocks')
 
 function registerRoutes(app) {
