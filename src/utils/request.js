@@ -1,5 +1,6 @@
 import axios from 'axios'
 import store from '@/store'
+import { getToken } from './auth'
 
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API,
@@ -9,7 +10,7 @@ const service = axios.create({
 service.interceptors.request.use(
   config => {
     if (store.getters.token) {
-      config.headers['token'] = ``
+      config.headers['token'] = getToken()
     }
     config.cancelToken = store.getters.source.token
     return config
