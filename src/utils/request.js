@@ -23,11 +23,12 @@ service.interceptors.request.use(
 
 service.interceptors.response.use(
   response => {
-    const res = response.data
-    if (res.code >= 200 && res.code < 300) {
-      return res.data
+    const { data, config } = response
+    if (config.responseType === 'blob') return data
+    if (data.code >= 200 && data.code < 300) {
+      return data.data
     } else {
-      return Promise.reject(new Error(res.message || 'Error'))
+      return Promise.reject(new Error(data.message || 'Error'))
     }
   },
   error => {
@@ -36,27 +37,21 @@ service.interceptors.response.use(
   }
 )
 
-function ajax(type, url, data = {}) {
-  return service({
-    url,
-    method: type,
-    data
+export function post(url, ...config) {
+  return service.post(url, ...config)
+}
+export function put(url, ...config) {
+  return service.put(url, ...config)
+}
+export function del(url, params, config) {
+  return service.delete(url, {
+    params,
+    ...config
   })
 }
-
-export function post(url, data = {}) {
-  return ajax('post', url, data)
-}
-export function put(url, data = {}) {
-  return ajax('put', url, data)
-}
-export function del(url, data = {}) {
-  return ajax('delete', url, data)
-}
-export function get(url, data = {}) {
-  return service({
-    url,
-    method: 'get',
-    params: data
+export function get(url, params, config) {
+  return service.get(url, {
+    params,
+    ...config
   })
 }
