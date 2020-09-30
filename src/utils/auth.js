@@ -13,7 +13,11 @@ export function removeToken() {
 }
 
 export function getStorage(key) {
-  return JSON.parse(localStorage.getItem(key))
+  try {
+    return JSON.parse(localStorage.getItem(key))
+  } catch (err) {
+    return ''
+  }
 }
 
 export function setStorage(key, data) {

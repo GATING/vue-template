@@ -71,6 +71,25 @@ vue-template
 
 # 配置相关
 
+## gitHooks 配置
+
+在安装之后，`@vue/cli-service` 也会安装 [yorkie](https://github.com/yyx990803/yorkie)，它会让你在 `package.json`的 `gitHooks` 字段中方便地指定`Git hook`：
+
+```json
+{
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,vue}": ["vue-cli-service lint", "git add"]
+  }
+}
+```
+
+所以再也不用手动安装[husky](https://github.com/typicode/husky)了，因为 `yorkie` 是尤大 `fork` 自 `husky` 进行小修改后内置到了`@vue/cli`中的。
+
+> ps: husky 是 Git hooks 工具，可以防止使用 Git hooks 的一些不好的 commit 或者 push。
+
 ## eslint 配置
 
 是否在开发环境下通过 eslint-loader 在每次保存时 lint 代码，[具体查阅](https://cli.vuejs.org/zh/config/#lintonsave)
