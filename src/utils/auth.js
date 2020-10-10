@@ -14,16 +14,16 @@ export function removeToken() {
 
 export function getStorage(key) {
   try {
-    return JSON.parse(localStorage.getItem(key))
+    return JSON.parse(sessionStorage.getItem(key))
   } catch (err) {
     return ''
   }
 }
 
 export function setStorage(key, data) {
-  return localStorage.setItem(key, JSON.stringify(data))
+  return sessionStorage.setItem(key, JSON.stringify(data))
 }
 
 export function removeStorage(TokenKey) {
-  return localStorage.removeItem(TokenKey)
+  return sessionStorage.removeItem(TokenKey)
 }
