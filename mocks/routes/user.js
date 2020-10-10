@@ -31,12 +31,18 @@ module.exports = [
   {
     url: '/user/info',
     type: 'get',
-    response: () => {
+    response: req => {
+      const { token } = req.headers
+      const info = Object.values(users).find(user => user.token === token)
+      if (!info) {
+        return {
+          code: 39999,
+          message: 'token已过期，请重新登录'
+        }
+      }
       return {
         code: 200,
-        data: {
-          test: 'success'
-        }
+        data: info
       }
     }
   },

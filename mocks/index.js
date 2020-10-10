@@ -9,11 +9,11 @@ const flatten = arr =>
 
 const Mock = require('mockjs')
 
-const mocks = flatten(glob.sync(resolve(__dirname, 'routes/**/*.js')).map(item => require(item)))
 const mockDir = resolve(process.cwd(), 'mocks')
 
 function registerRoutes(app) {
   let mockLastIndex
+  const mocks = flatten(glob.sync(resolve(__dirname, 'routes/**/*.js')).map(item => require(item)))
   const mocksForServer = mocks.map(route => {
     return responseFake(route.url, route.type, route.response)
   })

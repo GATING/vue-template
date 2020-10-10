@@ -1,16 +1,9 @@
-import {
-  getToken,
-  setToken,
-  removeToken,
-  getStorage,
-  setStorage,
-  removeStorage
-} from '@/utils/auth'
-import { login, logout } from '@/api/user'
+import { getToken, setToken, removeToken } from '@/utils/auth'
+import { login, logout, getInfo } from '@/api/user'
 
 const state = {
   token: getToken(),
-  info: getStorage('user'),
+  info: null,
   roles: []
 }
 
@@ -31,7 +24,18 @@ const actions = {
           const { token } = user
           setToken(token)
           commit('SET_TOKEN', token)
-          setStorage('user', user)
+          commit('SET_INFO', user)
+          resolve()
+        })
+        .catch(error => {
+          reject(error)
+        })
+    })
+  },
+  getInfo({ commit }) {
+    return new Promise((resolve, reject) => {
+      getInfo()
+        .then(user => {
           commit('SET_INFO', user)
           resolve()
         })
@@ -47,7 +51,6 @@ const actions = {
         .then(() => {
           commit('SET_TOKEN', '')
           commit('SET_INFO', '')
-          removeStorage('user')
           removeToken()
           resolve()
         })
