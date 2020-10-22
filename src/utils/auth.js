@@ -16,7 +16,7 @@ export function getStorage(key) {
   try {
     return JSON.parse(sessionStorage.getItem(key))
   } catch (err) {
-    return ''
+    return
   }
 }
 
