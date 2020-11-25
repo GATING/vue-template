@@ -319,7 +319,7 @@ export function validTime12(time) {
   return reg.test(time)
 }
 
-/****
+/** **
  *
  *
  *
@@ -361,7 +361,7 @@ export function validLowerCase(str) {
   return reg.test(str)
 }
 
-/****
+/** **
  *
  *
  *
