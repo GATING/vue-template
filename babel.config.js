@@ -18,6 +18,16 @@ module.exports = {
               preventFullImport: true
             }
           }
+        ],
+        // 按需加载vant
+        [
+          'import',
+          {
+            libraryName: 'vant',
+            libraryDirectory: 'es',
+            style: true
+          },
+          'vant'
         ]
       ]
     }
