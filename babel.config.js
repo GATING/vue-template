@@ -1,5 +1,18 @@
 module.exports = {
   presets: ['@vue/cli-plugin-babel/preset'],
+  // 公共插件
+  plugins: [
+    // 按需加载vant
+    [
+      'import',
+      {
+        libraryName: 'vant',
+        libraryDirectory: 'es',
+        style: true
+      },
+      'vant'
+    ]
+  ],
   env: {
     development: {
       // 动态加载组件0 0避免项目过大，热更新过慢

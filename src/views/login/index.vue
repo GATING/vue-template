@@ -1,9 +1,24 @@
 <template>
-  <div>
-    <input type="text" v-model="form.user" />
-    <input type="text" v-model="form.pass" />
-    <input type="button" @click="login" value="登录" />
-  </div>
+  <van-form @submit="login">
+    <van-field
+      v-model="form.user"
+      name="用户名"
+      label="用户名"
+      placeholder="用户名"
+      :rules="[{ required: true, message: '请填写用户名' }]"
+    />
+    <van-field
+      v-model="form.pass"
+      type="password"
+      name="密码"
+      label="密码"
+      placeholder="密码"
+      :rules="[{ required: true, message: '请填写密码' }]"
+    />
+    <div style="margin: 16px">
+      <van-button round block type="info" native-type="submit">提交</van-button>
+    </div>
+  </van-form>
 </template>
 
 <script>
@@ -20,7 +35,7 @@ export default {
   },
   watch: {
     $route: {
-      handler: function(route) {
+      handler(route) {
         const query = route.query
         if (query) {
           this.redirect = query.redirect

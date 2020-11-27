@@ -1,2 +1,10 @@
 @import './_size';
 @import './_color';
+
+body {
+  /* prettier-ignore */
+  max-width: 640PX;
+  margin: 0 auto;
+  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', STHeiti,
+    'Microsoft Yahei', Tahoma, Simsun, sans-serif;
+}

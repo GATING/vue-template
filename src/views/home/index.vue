@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>欢迎你，{{ info.name }}</h1>
-    <input type="button" value="退出" @click="logout" />
+    <van-button @click="logout" type="danger" size="small">退出</van-button>
   </div>
 </template>
 

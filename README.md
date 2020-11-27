@@ -121,6 +121,10 @@ module.export = {
 }
 ```
 
+## postcss-pxtorem 配置
+
+因为我们使用了`postcss-pxtorem`，他是小写`px`会转换，`Px`或者`PX`不会转换，而我们配置的`prettier`会默认把`PX`格式化为`px`，所以我们需要使用`/* prettier-ignore */` 告诉`prettier`，下一行代码不进行转换。
+
 ## 合并 webpack 配置，比如别名
 
 ```js
