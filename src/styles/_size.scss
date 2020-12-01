@@ -1,25 +1,29 @@
-$paddingMap: 10 20 30;
+$padding-map: 10 20 30;
 
-@each $size in $paddingMap {
+@each $size in $padding-map {
   .pr#{$size} {
     padding-right: #{$size}px;
   }
 }
+
 @each $size in $paddingMap {
   .pl#{$size} {
     padding-left: #{$size}px;
   }
 }
+
 @each $size in $paddingMap {
   .pt#{$size} {
     padding-top: #{$size}px;
   }
 }
+
 @each $size in $paddingMap {
   .pb#{$size} {
     padding-bottom: #{$size}px;
   }
 }
+
 @each $size in $paddingMap {
   .p#{$size} {
     padding: #{$size}px;
