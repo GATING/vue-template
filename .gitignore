@@ -102,3 +102,10 @@ typings/
 
 # DynamoDB Local files
 .dynamodb/
+
+
+# jscpd report
+report/
+
+# changelog
+CHANGELOG.md

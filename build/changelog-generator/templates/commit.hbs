@@ -1,0 +1,20 @@
+* {{#if scope}}{{scope}}: {{/if~}}
+  {{#if message ~}}
+    {{~message~}}
+  {{~else~}}
+    {{~header~}}
+  {{~/if ~}}
+{{~!-- PR number/commit hash --}}
+{{~#if @root.linkReferences~}}
+  {{~#if PR}} ([#{{PR}}](
+      {{~#if @root.host}}{{~@root.host}}/{{/if~}}
+      {{~#if @root.owner ~}}{{@root.owner}}/{{/if~}}
+      {{~@root.repository}}/pull/{{PR}}))
+  {{~else}} ([{{hash}}](
+      {{~#if @root.host}}{{~@root.host}}/{{/if~}}
+      {{~#if @root.owner ~}}{{@root.owner}}/{{/if~}}
+      {{~@root.repository}}/{{@root.commit}}/{{hash}}))
+  {{~/if~}}
+{{~else~}}
+  {{~hash~}}
+{{~/if~}}
