@@ -4,7 +4,7 @@
 
 ```
 vue-template
-├── .browserslistrc  -------------------------> babel的配置文件
+├── .browserslistrc  -------------------------> 浏览器的兼容版本配置
 ├── .cz-config.js  ---------------------------> 自定义Commitizen的信息域
 ├── .czrc  -----------------------------------> commitizen配置文件
 ├── .editorconfig  ---------------------------> 统一不同编辑的编码风格
@@ -34,7 +34,7 @@ vue-template
 |     └── user.js
 ├── package-lock.json  -----------------------> 描述 package.json 文件中所有模块的版本信息、模块来源及依赖的小版本信息。
 ├── package.json  ----------------------------> 项目的依赖文件
-├── postcss.config.js
+├── postcss.config.js  -----------------------> postcss配置文件，用于处理css前缀等问题
 ├── prettier.config.js  ----------------------> prettier的配置，用于统一团队格式化风格
 ├── public  ----------------------------------> vue的模板页面
 |  ├── favicon.ico
