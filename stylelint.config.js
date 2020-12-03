@@ -34,7 +34,12 @@ module.exports = {
     // hex值大写，如 #fff -> #FFF
     'color-hex-case': 'upper',
     // 关键字小写，如 BLOCK -> block
-    'value-keyword-case': 'lower',
+    'value-keyword-case': [
+      'lower',
+      {
+        ignoreKeywords: ['BlinkMacSystemFont']
+      }
+    ],
     // 函数名小写，如 CALC -> calc
     'function-name-case': 'lower',
     // 属性小写，如 WIDTH -> width
