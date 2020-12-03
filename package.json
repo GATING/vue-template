@@ -10,6 +10,7 @@
     "build:dev": "vue-cli-service build --mode development",
     "build:stage": "vue-cli-service build --mode staging",
     "style": "stylelint src/**/*.vue src/**/*.scss --fix",
+    "stylelint-check": "stylelint-config-prettier-check",
     "lint": " npm run style &&  vue-cli-service lint",
     "commit": "git add -A && git-cz",
     "review": "jscpd ./src",
