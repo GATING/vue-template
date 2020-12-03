@@ -1,12 +1,21 @@
 import axios from 'axios'
 import store from '@/store'
 import { getToken } from './auth'
+import { errorStatus } from './variables'
 
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API,
   // withCredentials: true,
   timeout: 10000
 })
+
+// Toast提示，根据不同的ui库来
+const errorHandler = error => {
+  const status = get(error, 'response.status')
+  error.message = errorStatus[status] || '未知错误'
+  return Promise.reject(error)
+}
+
 service.interceptors.request.use(
   config => {
     if (store.getters.token) {
@@ -16,8 +25,7 @@ service.interceptors.request.use(
     return config
   },
   error => {
-    console.log(error)
-    return Promise.reject(error)
+    return errorHandler(error)
   }
 )
 
@@ -33,7 +41,7 @@ service.interceptors.response.use(
   },
   error => {
     if (error instanceof axios.Cancel) return
-    return Promise.reject(error)
+    return errorHandler(error)
   }
 )
 
