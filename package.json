@@ -11,9 +11,12 @@
     "build:stage": "vue-cli-service build --mode staging",
     "style": "stylelint src/**/*.vue src/**/*.scss --fix",
     "stylelint-check": "stylelint-config-prettier-check",
-    "lint": "vue-cli-service lint && npm run style ",
+    "lint": "vue-cli-service lint && npm run style",
     "commit": "git add -A && git-cz",
+    "lint-staged": "lint-staged",
+    "commitlint": "commitlint",
     "review": "jscpd ./src",
+    "version":"node ./build/change-version.js",
     "release": "bash ./build/release.sh",
     "release:note": "conventional-changelog --config ./build/changelog-generator/index.js --infile CHANGELOG.md --same-file  -s -r 0"
   },
@@ -69,13 +72,15 @@
     "vue-template-compiler": "^2.6.12"
   },
   "husky": {
-    "pre-commit": "lint-staged",
-    "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    "hooks":{
+      "commit-msg": "npm run commitlint -- -E HUSKY_GIT_PARAMS",
+      "pre-commit": "npm run lint-staged"
+    }
   },
   "lint-staged": {
     "*.{js,vue}": [
-      "npm run lint",
-      "git add"
+      "prettier --write",
+      "npm run lint"
     ]
   },
   "config": {
@@ -84,15 +89,6 @@
     },
     "cz-customizable": {
       "config": "./.cz-config.js"
-    }
-  },
-  "standard-version": {
-    "scripts": {
-      "posttag": "git push --follow-tags"
-    },
-    "skip": {
-      "tag": true,
-      "commit": true
     }
   },
   "bugs": {
