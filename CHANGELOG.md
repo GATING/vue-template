@@ -1,7 +1,7 @@
-<a name="11.2.2"></a>
+<a name="0.1.0"></a>
 
-# 11.2.2 (2020-12-04)
-[完整变更日志](https://github.com/GATING/vue-template/compare/9158369...v11.2.2)
+# 0.1.0 (2020-12-04)
+[完整变更日志](https://github.com/GATING/vue-template/compare/9158369...v0.1.0)
 
 ## ⚡ 其他
 
@@ -26,9 +26,8 @@
 
 ## 🎫 构建
 
-* 添加release.sh文件 ([cd75a28](https://github.com/GATING/vue-template/commit/cd75a28))
-* release: 11.2.2 ([d957eb7](https://github.com/GATING/vue-template/commit/d957eb7))
-* release: 11.2.2 ([d42a178](https://github.com/GATING/vue-template/commit/d42a178))
+* 添加release.sh文件 ([11eda92](https://github.com/GATING/vue-template/commit/11eda92))
+* release: 0.1.0 ([f984c54](https://github.com/GATING/vue-template/commit/f984c54))
 
 ## 🐞 修复
 
