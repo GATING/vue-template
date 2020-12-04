@@ -14,7 +14,7 @@
     "lint": " npm run style &&  vue-cli-service lint",
     "commit": "git add -A && git-cz",
     "review": "jscpd ./src",
-    "changelog": "conventional-changelog --config ./build/changelog-generator/index.js --infile CHANGELOG.md --same-file",
+    "changelog": "conventional-changelog --config ./build/changelog-generator/index.js --infile CHANGELOG.md --same-file  -s -r 0",
     "release": "standard-version",
     "release:tag": "npm run release --release-as",
     "release:major": "standard-version --release-as major",
@@ -100,7 +100,8 @@
       "posttag": "git push --follow-tags"
     },
     "skip": {
-      "tag": true
+      "tag": true,
+      "commit": true
     }
   },
   "bugs": {
