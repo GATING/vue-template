@@ -11,19 +11,11 @@
     "build:stage": "vue-cli-service build --mode staging",
     "style": "stylelint src/**/*.vue src/**/*.scss --fix",
     "stylelint-check": "stylelint-config-prettier-check",
-    "lint": " npm run style &&  vue-cli-service lint",
+    "lint": "vue-cli-service lint && npm run style ",
     "commit": "git add -A && git-cz",
     "review": "jscpd ./src",
-    "changelog": "conventional-changelog --config ./build/changelog-generator/index.js --infile CHANGELOG.md --same-file",
-    "release": "standard-version",
-    "release:tag": "npm run release --release-as",
-    "release:major": "standard-version --release-as major",
-    "release:minor": "standard-version --release-as minor",
-    "release:patch": "standard-version --release-as patch",
-    "release:first": "standard-version --first-release",
-    "release:rc": "standard-version --prerelease rc",
-    "release:beta": "standard-version --prerelease beta",
-    "release:alpha": "standard-version --prerelease alpha"
+    "release": "bash ./build/release.sh",
+    "release:note": "conventional-changelog --config ./build/changelog-generator/index.js --infile CHANGELOG.md --same-file  -s -r 0"
   },
   "repository": {
     "type": "git",
@@ -70,7 +62,6 @@
     "sass": "^1.26.11",
     "sass-loader": "^8.0.2",
     "script-ext-html-webpack-plugin": "^2.1.4",
-    "standard-version": "^9.0.0",
     "stylelint": "^13.8.0",
     "stylelint-config-prettier": "^8.0.2",
     "stylelint-config-standard": "^20.0.0",
@@ -100,7 +91,8 @@
       "posttag": "git push --follow-tags"
     },
     "skip": {
-      "tag": true
+      "tag": true,
+      "commit": true
     }
   },
   "bugs": {

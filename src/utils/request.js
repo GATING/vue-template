@@ -19,14 +19,12 @@ const errorHandler = error => {
 service.interceptors.request.use(
   config => {
     if (store.getters.token) {
-      config.headers['token'] = getToken()
+      config.headers.token = getToken()
     }
     config.cancelToken = store.getters.source.token
     return config
   },
-  error => {
-    return errorHandler(error)
-  }
+  error => errorHandler(error)
 )
 
 service.interceptors.response.use(
@@ -35,9 +33,8 @@ service.interceptors.response.use(
     if (config.responseType === 'blob') return data
     if (data.code >= 200 && data.code < 300) {
       return data.data
-    } else {
-      return Promise.reject(new Error(data.message || 'Error'))
     }
+    return Promise.reject(new Error(data.message || 'Error'))
   },
   error => {
     if (error instanceof axios.Cancel) return
