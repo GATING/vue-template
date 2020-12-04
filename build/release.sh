@@ -17,7 +17,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   npm run lint
  
   # commit
-  npm version "$VERSION" --message "chore(release): $VERSION"
+  npm version "$VERSION"
   # publish
   git push origin refs/tags/v"$VERSION"
 
