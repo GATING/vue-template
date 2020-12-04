@@ -49,9 +49,9 @@ module.exports = {
   },
   scopes: [],
   allowCustomScopes: true,
-  allowBreakingChanges: ['feat', 'fix']
+  allowBreakingChanges: ['feat', 'fix'],
   // skip any questions you want
-  // skipQuestions: ['footer'],
+  skipQuestions: ['footer']
   // limit subject length
   // subjectLimit: 100,
   // breaklineChar: '|', // It is supported for fields body and footer.

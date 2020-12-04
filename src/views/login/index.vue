@@ -20,8 +20,7 @@ export default {
   },
   watch: {
     $route: {
-      handler: function(route) {
-        const query = route.query
+      handler({ query }) {
         if (query) {
           this.redirect = query.redirect
           this.otherQuery = this.getOtherQuery(query)
