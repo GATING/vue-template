@@ -1,84 +1,48 @@
-# Changelog
+<a name="11.2.2"></a>
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+# 11.2.2 (2020-12-04)
+[完整变更日志](https://github.com/GATING/vue-template/compare/9158369...v11.2.2)
 
-### 0.1.1 (2020-12-04)
+## ⚡ 其他
 
+* 去除之前配置格式化遗留bug ([fc950db](https://github.com/GATING/vue-template/commit/fc950db))
+* 更新权限指令 ([381bb40](https://github.com/GATING/vue-template/commit/381bb40))
+* // ([d28d85b](https://github.com/GATING/vue-template/commit/d28d85b))
+* 优化mock和登录逻辑 ([28f6a82](https://github.com/GATING/vue-template/commit/28f6a82))
+* localStorage替换为sessionStorage ([7d861f4](https://github.com/GATING/vue-template/commit/7d861f4))
+* 开发环境开启performance ([bafbf9d](https://github.com/GATING/vue-template/commit/bafbf9d))
+* 登录对接mock接口 ([ff7bc15](https://github.com/GATING/vue-template/commit/ff7bc15))
+* 添加storage方法 ([aac627a](https://github.com/GATING/vue-template/commit/aac627a))
+* 添加正则and公用的认证、缓存方法 ([f8bca46](https://github.com/GATING/vue-template/commit/f8bca46))
+* readme修改、mocks路由修改 ([6bc2adb](https://github.com/GATING/vue-template/commit/6bc2adb))
+* mock完成 ([98ac09f](https://github.com/GATING/vue-template/commit/98ac09f))
+* 去掉pwa，添加基础配置 ([4afe80c](https://github.com/GATING/vue-template/commit/4afe80c))
+* init template ([42e2a54](https://github.com/GATING/vue-template/commit/42e2a54))
+* Initial commit ([9158369](https://github.com/GATING/vue-template/commit/9158369))
 
-### 📚 文档
+## ✨ 新功能
 
-* changelog更新 ([4a93185](https://github.com/GATING/vue-template/commit/4a9318579c8dac4192e7b987a6d224fd153f858d))
-* 更新redeme文件 ([77d48cc](https://github.com/GATING/vue-template/commit/77d48ccc2720b3e4e4b8fec8104c9837e9ab3f3b))
+* src/utils/request.js: 添加请求错误状态码提示 ([72f9803](https://github.com/GATING/vue-template/commit/72f9803))
 
+## 🎫 构建
 
-### 💅 style
+* 添加release.sh文件 ([cd75a28](https://github.com/GATING/vue-template/commit/cd75a28))
+* release: 11.2.2 ([d957eb7](https://github.com/GATING/vue-template/commit/d957eb7))
+* release: 11.2.2 ([d42a178](https://github.com/GATING/vue-template/commit/d42a178))
 
-* **.eslintrc.js:** 添加eslint规则 ([e39c8ae](https://github.com/GATING/vue-template/commit/e39c8aec0e814f0eab3a0e9a0ec62c040fa8168f))
-* eslint规则完善 ([cee2935](https://github.com/GATING/vue-template/commit/cee2935469217bcf8c8aa4bbb9525311c2820afe))
-* stylelint适配prettier ([afb897f](https://github.com/GATING/vue-template/commit/afb897f696fe853c074f3c71e6aceeafaff4a2af))
-* 代码规范落地 ([9e15290](https://github.com/GATING/vue-template/commit/9e152909aa400cfe49794115bb566cdcc4427ae1))
-* 添加字体样式变量 ([450b5bb](https://github.com/GATING/vue-template/commit/450b5bbf428fe7953c9a8bb1d323de9bb218c539))
+## 🐞 修复
 
+* src/styles/_size.scss: 修复_size变量问题 ([fbb45a6](https://github.com/GATING/vue-template/commit/fbb45a6))
 
-### ✨ 新功能
+## 💅 style
 
-* **src/utils/request.js:** 添加请求错误状态码提示 ([72f9803](https://github.com/GATING/vue-template/commit/72f9803e7a76d2416d542ed5fb4f5a68dc86720f))
+* .eslintrc.js: 添加eslint规则 ([e39c8ae](https://github.com/GATING/vue-template/commit/e39c8ae))
+* eslint规则完善 ([cee2935](https://github.com/GATING/vue-template/commit/cee2935))
+* stylelint适配prettier ([afb897f](https://github.com/GATING/vue-template/commit/afb897f))
+* 添加字体样式变量 ([450b5bb](https://github.com/GATING/vue-template/commit/450b5bb))
+* 代码规范落地 ([9e15290](https://github.com/GATING/vue-template/commit/9e15290))
 
+## 📚 文档
 
-### 🐞 修复
-
-* **src/styles/_size.scss:** 修复_size变量问题 ([fbb45a6](https://github.com/GATING/vue-template/commit/fbb45a67c7d78c7601b511752e89ef6e5b4b15bb))
-
-### 0.1.1 (2020-12-04)
-
-
-### 📚 文档
-
-* changelog更新 ([4a93185](https://github.com/GATING/vue-template/commit/4a9318579c8dac4192e7b987a6d224fd153f858d))
-* 更新redeme文件 ([77d48cc](https://github.com/GATING/vue-template/commit/77d48ccc2720b3e4e4b8fec8104c9837e9ab3f3b))
-
-
-### 💅 style
-
-* **.eslintrc.js:** 添加eslint规则 ([e39c8ae](https://github.com/GATING/vue-template/commit/e39c8aec0e814f0eab3a0e9a0ec62c040fa8168f))
-* eslint规则完善 ([cee2935](https://github.com/GATING/vue-template/commit/cee2935469217bcf8c8aa4bbb9525311c2820afe))
-* stylelint适配prettier ([afb897f](https://github.com/GATING/vue-template/commit/afb897f696fe853c074f3c71e6aceeafaff4a2af))
-* 代码规范落地 ([9e15290](https://github.com/GATING/vue-template/commit/9e152909aa400cfe49794115bb566cdcc4427ae1))
-* 添加字体样式变量 ([450b5bb](https://github.com/GATING/vue-template/commit/450b5bbf428fe7953c9a8bb1d323de9bb218c539))
-
-
-### ✨ 新功能
-
-* **src/utils/request.js:** 添加请求错误状态码提示 ([72f9803](https://github.com/GATING/vue-template/commit/72f9803e7a76d2416d542ed5fb4f5a68dc86720f))
-
-
-### 🐞 修复
-
-* **src/styles/_size.scss:** 修复_size变量问题 ([fbb45a6](https://github.com/GATING/vue-template/commit/fbb45a67c7d78c7601b511752e89ef6e5b4b15bb))
-
-## 0.1.0 (2020-12-04)
-
-
-### 📚 文档
-
-* changelog更新 ([4a93185](https://github.com/GATING/vue-template/commit/4a9318579c8dac4192e7b987a6d224fd153f858d))
-* 更新redeme文件 ([77d48cc](https://github.com/GATING/vue-template/commit/77d48ccc2720b3e4e4b8fec8104c9837e9ab3f3b))
-
-
-### 💅 style
-
-* **.eslintrc.js:** 添加eslint规则 ([e39c8ae](https://github.com/GATING/vue-template/commit/e39c8aec0e814f0eab3a0e9a0ec62c040fa8168f))
-* eslint规则完善 ([cee2935](https://github.com/GATING/vue-template/commit/cee2935469217bcf8c8aa4bbb9525311c2820afe))
-* stylelint适配prettier ([afb897f](https://github.com/GATING/vue-template/commit/afb897f696fe853c074f3c71e6aceeafaff4a2af))
-* 代码规范落地 ([9e15290](https://github.com/GATING/vue-template/commit/9e152909aa400cfe49794115bb566cdcc4427ae1))
-* 添加字体样式变量 ([450b5bb](https://github.com/GATING/vue-template/commit/450b5bbf428fe7953c9a8bb1d323de9bb218c539))
-
-
-### ✨ 新功能
-
-* **src/utils/request.js:** 添加请求错误状态码提示 ([72f9803](https://github.com/GATING/vue-template/commit/72f9803e7a76d2416d542ed5fb4f5a68dc86720f))
-
-
-### 🐞 修复
-
-* **src/styles/_size.scss:** 修复_size变量问题 ([fbb45a6](https://github.com/GATING/vue-template/commit/fbb45a67c7d78c7601b511752e89ef6e5b4b15bb))
+* changelog更新 ([a2fcacd](https://github.com/GATING/vue-template/commit/a2fcacd))
+* 更新redeme文件 ([77d48cc](https://github.com/GATING/vue-template/commit/77d48cc))

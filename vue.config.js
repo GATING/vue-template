@@ -15,7 +15,7 @@ module.exports = {
   // 默认值，仅作用于生产构建，是否启用多进程打包
   // parallel: require('os').cpus().length > 1,
   devServer: {
-    port: port,
+    port,
     open: true,
     // 让浏览器 overlay 显示错误
     overlay: {
@@ -56,7 +56,7 @@ module.exports = {
     }
   },
   configureWebpack: {
-    name: name,
+    name,
     resolve: {
       alias: {
         '@': resolve('src')

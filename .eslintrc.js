@@ -47,8 +47,6 @@ module.exports = {
     'space-before-blocks': 2,
     // 当你必须使用函数表达式（传递匿名函数）时，使用箭头函数标记.
     'prefer-arrow-callback': 2,
-    // 如果函数体只包含一条没有副作用的返回表达式的语句，可以省略花括号并使用隐式的return.
-    'arrow-parens': [2, 'always'],
     'arrow-body-style': [2, 'as-needed'],
     // 避免把箭头函数语法 (=>) 和比较运算符 (<=, >=)弄混
     'no-confusing-arrow': 2,
@@ -97,7 +95,7 @@ module.exports = {
     // 不要用,作为行的开始
     'comma-style': 1,
     // 避免单字母名字. 命名需要有可描述性.
-    'id-length': 2,
+    'id-length': [2, { exceptions: ['i', 'h', 'e'] }],
     // 命名对象，函数和实例时使用驼峰风格.
     camelcase: 2,
     // 仅当命名构造函数或类的时候使用帕斯卡风格.
