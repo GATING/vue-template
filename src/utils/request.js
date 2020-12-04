@@ -63,3 +63,6 @@ export function get(url, params, config) {
     ...config
   })
 }
+
+// 捕获reject错误，使得Promise Catch不报错
+window.addEventListener('unhandledrejection', event => event.preventDefault())
