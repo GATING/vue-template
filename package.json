@@ -1,6 +1,6 @@
 {
   "name": "vue-template",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -16,7 +16,7 @@
     "lint-staged": "lint-staged",
     "commitlint": "commitlint",
     "review": "jscpd ./src",
-    "version":"node ./build/change-version.js",
+    "version": "node ./build/change-version.js",
     "release": "bash ./build/release.sh",
     "release:note": "conventional-changelog --config ./build/changelog-generator/index.js --infile CHANGELOG.md --same-file  -s -r 0"
   },
@@ -72,7 +72,7 @@
     "vue-template-compiler": "^2.6.12"
   },
   "husky": {
-    "hooks":{
+    "hooks": {
       "commit-msg": "npm run commitlint -- -E HUSKY_GIT_PARAMS",
       "pre-commit": "npm run lint-staged"
     }

@@ -15,17 +15,15 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 
   # test  
   npm run lint
- 
+  
   # commit
   npm run version --VERSION "$VERSION"
-  # publish
-  git push origin refs/tags/v"$VERSION"
-
-
- # generate release note
+  # generate release note
   npm run release:note
-  # commit
   git add -A
   git commit -m "chore(release): $VERSION"
+  git tag v"$VERSION" -m "chore(release): $VERSION"
+  # publish
+  git push origin refs/tags/v"$VERSION"
   git push
 fi
