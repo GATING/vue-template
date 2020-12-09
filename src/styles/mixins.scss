@@ -3,3 +3,12 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+/* 
+  https://developer.mozilla.org/zh-CN/docs/Web/CSS/font-smooth
+  字体抗锯齿,使用后字体看起来会更清晰舒服 
+*/
+@mixin font-smooth {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
