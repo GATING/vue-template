@@ -1,6 +1,7 @@
 # vue-template
 
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+![jscpd](./report/jscpd-badge.svg)
 
 ```
 vue-template

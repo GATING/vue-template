@@ -102,7 +102,3 @@ typings/
 
 # DynamoDB Local files
 .dynamodb/
-
-
-# jscpd report
-report/
