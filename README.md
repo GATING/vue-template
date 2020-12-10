@@ -107,15 +107,9 @@ vscode 中搭配`vetur`,`stylelint`和`prettier`插件
 
 ```json
 {
-  "prettier.requireConfig": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.codeActionsOnSave": {
     "source.fixAll.stylelint": true
-  },
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[javascriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[vue]": {
     "editor.defaultFormatter": "octref.vetur"
