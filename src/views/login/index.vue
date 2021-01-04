@@ -1,7 +1,7 @@
 <template>
   <div>
-    <input type="text" v-model="form.user" />
-    <input type="text" v-model="form.pass" />
+    <input type="text" placeholder="gating" class="mr-10" v-model="form.user" />
+    <input type="text" placeholder="123456" class="mr-10" v-model="form.pass" />
     <input type="button" @click="login" value="登录" />
   </div>
 </template>

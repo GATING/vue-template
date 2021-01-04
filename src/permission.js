@@ -1,3 +1,4 @@
+import axios from 'axios'
 import store from '@/store'
 import router from './router'
 import { getToken } from '@/utils/auth'
@@ -5,7 +6,11 @@ import { getToken } from '@/utils/auth'
 const whiteList = ['/login', '/404', '/401']
 
 router.beforeEach(async (to, from, next) => {
-  console.log(to.path)
+  // 取消所有请求，可选
+  const CancelToken = axios.CancelToken
+  store.getters.source.cancel && store.getters.source.cancel()
+  store.commit('app/SET_SOURCE', CancelToken.source())
+
   const hasToken = getToken()
   if (hasToken) {
     if (to.path === '/login') {

@@ -11,7 +11,7 @@ const service = axios.create({
 
 // Toast提示，根据不同的ui库来
 const errorHandler = error => {
-  const status = get(error, 'response.status')
+  const status = error?.response?.status
   error.message = errorStatus[status] || '未知错误'
   return Promise.reject(error)
 }
