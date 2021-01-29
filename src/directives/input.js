@@ -4,33 +4,40 @@ const trigger = (el, type) => {
   el.dispatchEvent(e)
 }
 
+// input本身需要v-model或者$emit('input')
 function initFun(handler) {
-  let oldCallback = null
   const bindFun = (el, binding) => {
     const ele = el.tagName === 'INPUT' ? el : el.querySelector('input')
-    if (oldCallback) {
-      el.removeEventListener('keyup', oldCallback)
-    }
     const callback = () => {
       handler(ele, binding)
       trigger(ele, 'input')
     }
-    el.addEventListener('keyup', callback)
-    oldCallback = callback
+    ele.addEventListener('compositionstart', () => {
+      el.composing = true
+    })
+    ele.addEventListener('compositionend', () => {
+      el.composing = false
+      callback()
+    })
+
+    ele.addEventListener('keyup', () => {
+      if (!el.composing) {
+        callback()
+      }
+    })
   }
   return {
-    inserted: bindFun,
-    update: bindFun
+    bind: bindFun
   }
 }
 
 // 输入数字限制最小值
 /**
-   * @example
-   <el-input
-   v-input-min="99.99"
-   v-model="value"></el-input>
-   */
+ * @example
+ <el-input
+ v-input-min="99.99"
+ v-model="value"></el-input>
+ */
 const inputMin = (ele, binding) => {
   let value = ele.value
   if (parseFloat(value) < parseFloat(binding.value)) {
@@ -41,11 +48,11 @@ const inputMin = (ele, binding) => {
 
 // 输入数字限制最大值
 /**
-   * @example
-   <el-input
-   v-input-max="99.99"
-   v-model="value"></el-input>
-   */
+ * @example
+ <el-input
+ v-input-max="99.99"
+ v-model="value"></el-input>
+ */
 const inputMax = (ele, binding) => {
   let value = ele.value
   if (parseFloat(value) > parseFloat(binding.value)) {
@@ -55,12 +62,12 @@ const inputMax = (ele, binding) => {
 }
 
 /**
-   * @example
-   <el-input
-   v-input-int
-   v-input-max="9999"
-   v-model="value"></el-input>
-   */
+ * @example
+ <el-input
+ v-input-int
+ v-input-max="9999"
+ v-model="value"></el-input>
+ */
 // 只能输入整数
 const inputInt = ele => {
   let value = `${ele.value}`
@@ -75,12 +82,12 @@ const inputInt = ele => {
 }
 
 /**
-   * @example
-   <el-input
-   v-input-point2
-   v-input-max="99.99"
-   v-model="value"></el-input>
-   */
+ * @example
+ <el-input
+ v-input-point2
+ v-input-max="99.99"
+ v-model="value"></el-input>
+ */
 // 只能输入两位小数
 const inputPoint2 = ele => {
   let value = `${ele.value}`
@@ -115,11 +122,11 @@ const inputEn = ele => {
 }
 
 /**
-   * @example
-   <el-input
-   v-input-regexp="/[0-9]{0,18}/"
-   v-model="value"></el-input>
-   */
+ * @example
+ <el-input
+ v-input-regexp="/[0-9]{0,18}/"
+ v-model="value"></el-input>
+ */
 const inputRegexp = (ele, binding) => {
   let value = ele.value
   const reg = binding.value
