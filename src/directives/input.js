@@ -4,30 +4,52 @@ const trigger = (el, type) => {
   el.dispatchEvent(e)
 }
 
-// input本身需要v-model或者$emit('input')
+const compositionstart = e => {
+  e.target.composing = true
+}
+const compositionend = e => {
+  e.target.composing = false
+  trigger(e.target, 'input')
+}
+
 function initFun(handler) {
   const bindFun = (el, binding) => {
-    const ele = el.tagName === 'INPUT' ? el : el.querySelector('input')
-    const callback = () => {
-      handler(ele, binding)
-      trigger(ele, 'input')
+    let ele
+    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+      ele = el
+    } else {
+      ele = el.querySelector('input') || el.querySelector('TEXTAREA')
     }
-    ele.addEventListener('compositionstart', () => {
-      el.composing = true
-    })
-    ele.addEventListener('compositionend', () => {
-      el.composing = false
-      callback()
-    })
-
-    ele.addEventListener('keyup', () => {
-      if (!el.composing) {
-        callback()
+    if (!ele[binding.name]) {
+      ele[binding.name] = {
+        oldCallback: null,
+        oldValue: null
       }
-    })
+    }
+    const oldData = ele[binding.name]
+    const value = binding.value?.toString() || undefined
+    if (oldData.oldValue !== value) {
+      oldData.oldValue = value
+      if (oldData.oldCallback) {
+        ele.removeEventListener('keyup', oldData.oldCallback)
+        ele.removeEventListener('compositionstart', compositionstart)
+        ele.removeEventListener('compositionend', compositionend)
+      }
+      const callback = e => {
+        if (!e.target.composing) {
+          handler(ele, binding)
+          trigger(ele, 'input')
+        }
+      }
+      ele.addEventListener('keyup', callback)
+      ele.addEventListener('compositionstart', compositionstart)
+      ele.addEventListener('compositionend', compositionend)
+      oldData.oldCallback = callback
+    }
   }
   return {
-    bind: bindFun
+    inserted: bindFun,
+    update: bindFun
   }
 }
 
@@ -40,7 +62,7 @@ function initFun(handler) {
  */
 const inputMin = (ele, binding) => {
   let value = ele.value
-  if (parseFloat(value) < parseFloat(binding.value)) {
+  if (parseFloat(value) <= parseFloat(binding.value)) {
     value = binding.value
   }
   ele.value = value
@@ -55,7 +77,7 @@ const inputMin = (ele, binding) => {
  */
 const inputMax = (ele, binding) => {
   let value = ele.value
-  if (parseFloat(value) > parseFloat(binding.value)) {
+  if (parseFloat(value) >= parseFloat(binding.value)) {
     value = binding.value
   }
   ele.value = value
@@ -69,6 +91,7 @@ const inputMax = (ele, binding) => {
  v-model="value"></el-input>
  */
 // 只能输入整数
+// parseInt 有长度限制,最多16位,20位溢出
 const inputInt = ele => {
   let value = `${ele.value}`
   const reg = /\d{1}\d*/
