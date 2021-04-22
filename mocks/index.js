@@ -14,16 +14,14 @@ const mockDir = resolve(process.cwd(), 'mocks')
 function registerRoutes(app) {
   let mockLastIndex
   const mocks = flatten(glob.sync(resolve(__dirname, 'routes/**/*.js')).map(item => require(item)))
-  const mocksForServer = mocks.map(route => {
-    return responseFake(route.url, route.type, route.response)
-  })
+  const mocksForServer = mocks.map(route => responseFake(route.url, route.type, route.response))
   for (const mock of mocksForServer) {
     app[mock.type](mock.url, mock.response)
     mockLastIndex = app._router.stack.length
   }
   const mockRoutesLength = Object.keys(mocksForServer).length
   return {
-    mockRoutesLength: mockRoutesLength,
+    mockRoutesLength,
     mockStartIndex: mockLastIndex - mockRoutesLength
   }
 }
@@ -36,16 +34,14 @@ function unregisterRoutes() {
   })
 }
 
-const responseFake = (url, type, respond) => {
-  return {
-    url: new RegExp(`${process.env.VUE_APP_BASE_API}${url}`),
-    type: type || 'get',
-    response(req, res) {
-      console.log('请求调用:' + req.path)
-      res.json(Mock.mock(respond instanceof Function ? respond(req, res) : respond))
-    }
+const responseFake = (url, type, respond) => ({
+  url: new RegExp(`${process.env.VUE_APP_BASE_API}${url}`),
+  type: type || 'get',
+  response(req, res) {
+    console.log(`请求调用:${req.path}`)
+    res.json(Mock.mock(respond instanceof Function ? respond(req, res) : respond))
   }
-}
+})
 
 module.exports = app => {
   app.use(bodyParser.json())

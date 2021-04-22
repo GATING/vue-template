@@ -19,12 +19,11 @@ module.exports = [
           code: 200,
           data: userInfo
         }
-      } else {
-        return {
-          code: 29999,
-          data: null,
-          message: '用户名或密码错误'
-        }
+      }
+      return {
+        code: 29999,
+        data: null,
+        message: '用户名或密码错误'
       }
     }
   },
@@ -49,21 +48,17 @@ module.exports = [
   {
     url: '/user/logout',
     type: 'put',
-    response: () => {
-      return {
-        code: 200,
-        data: 'success'
-      }
-    }
+    response: () => ({
+      code: 200,
+      data: 'success'
+    })
   },
   {
     url: '/user/delete',
     type: 'delete',
-    response: () => {
-      return {
-        code: 200,
-        data: 'success'
-      }
-    }
+    response: () => ({
+      code: 200,
+      data: 'success'
+    })
   }
 ]
