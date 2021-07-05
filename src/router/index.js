@@ -11,18 +11,27 @@ const routes = [
     redirect: '/home',
     children: [
       {
-        path: 'home',
+        path: '/home',
         name: 'home',
+        redirect: '/home/test',
         meta: { title: '首页' },
-        component: () => import('@/views/home/index')
+        component: () => import('@/views/home/index'),
+        children: [
+          {
+            path: '/home/test',
+            name: 'test',
+            meta: { title: '测试页' },
+            component: () => import('@/views/home/test')
+          }
+        ]
+      },
+      {
+        path: '/login',
+        name: 'login',
+        meta: { title: '登录页' },
+        component: () => import('@/views/login/index')
       }
     ]
-  },
-  {
-    path: '/login',
-    name: 'login',
-    meta: { title: '登录页' },
-    component: () => import('@/views/login/index')
   }
 ]
 

@@ -11,8 +11,8 @@ export default {
   data() {
     return {
       form: {
-        user: '',
-        pass: ''
+        user: 'gating',
+        pass: '123456'
       },
       redirect: undefined,
       otherQuery: {}
