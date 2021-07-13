@@ -29,3 +29,11 @@ $font-family-regular: -apple-system, BlinkMacSystemFont, 'PingFang-SC-regular', 
 //   'Source Han Sans CN Light', 'Helvetica Neue';
 // $font-family-semibold: -apple-system, BlinkMacSystemFont, 'PingFangSC-Semibold',
 //   'Source Han Sans CN Light', 'Helvetica Neue';
+
+:export {
+  default: $main-color;
+  primary: $primary-color;
+  success: $success-color;
+  warning: $warning-color;
+  danger: $danger-color;
+}

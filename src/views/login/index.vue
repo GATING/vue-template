@@ -29,6 +29,9 @@ export default {
       immediate: true
     }
   },
+  mounted() {
+    this.$log.capsule('title')
+  },
   methods: {
     async login() {
       await this.$store.dispatch('user/login', this.form)

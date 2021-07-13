@@ -327,3 +327,27 @@ export function scrollToTop() {
     window.scrollTo(0, scrollTop - scrollTop / 8)
   }
 }
+
+/**
+ * 使用定点表示法来格式化一个数值
+ * @param { string | number } num
+ * @param { string | number } precision
+ * @returns { number }
+ * @example
+ * toFixed(12.2233) // 12.22
+ */
+export function toFixed(number, precision = 2) {
+  const multiplier = Math.pow(10, precision + 1),
+    wholeNumber = Math.floor(number * multiplier)
+  return (Math.round(wholeNumber / 10) * 10) / multiplier
+}
+/**
+ * 千位分隔符
+ * @param { string | number } num
+ * @returns { string }
+ * @example
+ * toThousandFilter(10000) // 10,000
+ */
+export function toThousandFilter(num) {
+  return (+num || 0).toString().replace(/^-?\d+/g, m => m.replace(/(?=(?!\b)(\d{3})+$)/g, ','))
+}
