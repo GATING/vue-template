@@ -5,8 +5,8 @@
       "@/*": ["src/*"],
       "@api/*": ["src/api/*"],
       "@view/*": ["src/views/*"],
-      "@/style": ["src/style/*"],
       "@comp/*": ["src/comp/*"],
+      "@style/*": ["src/style/*"],
       "@plugin/*": ["src/plugins/*"]
     }
   },

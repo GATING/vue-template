@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 const path = require('path')
-// const StylelintPlugin = require('stylelint-webpack-plugin')
+const StylelintPlugin = require('stylelint-webpack-plugin')
 const CompressionWebpackPlugin = require('compression-webpack-plugin')
 function resolve(dir) {
   return path.join(__dirname, dir)
@@ -88,14 +88,16 @@ module.exports = {
     // 预读取，当有很多页面时，会导致太多无意义的请求
     config.plugins.delete('prefetch')
 
-    // config.when(isDevelopment, config => {
-    //   config.plugin('compressionPlugin').use(
-    //     new StylelintPlugin({
-    //       files: ['src/**/*.vue', 'src/assets/**/*.scss'],
-    //       fix: true // 打开自动修复-谨慎使用,配置参考同级的stylelint.config.js
-    //     })
-    //   )
-    // })
+    config.when(isDevelopment, config => {
+      // 开启 stylelint 检验
+      config.plugin('compressionPlugin').use(
+        new StylelintPlugin({
+          files: ['src/**/*.vue', 'src/**/*.scss'],
+          threads: true, // 是否启用多进程
+          fix: true // 打开自动修复-谨慎使用,配置参考同级的stylelint.config.js
+        })
+      )
+    })
 
     config.when(!isDevelopment, config => {
       // 删除生产环境下的console和debugger
