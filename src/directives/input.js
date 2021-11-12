@@ -31,17 +31,24 @@ function initFun(handler) {
     if (oldData.oldValue !== value) {
       oldData.oldValue = value
       if (oldData.oldCallback) {
-        ele.removeEventListener('keyup', oldData.oldCallback)
+        ele.removeEventListener('input', oldData.oldCallback)
         ele.removeEventListener('compositionstart', compositionstart)
         ele.removeEventListener('compositionend', compositionend)
       }
       const callback = e => {
+        // 阻止掉默认的change事件
+        e.preventDefault()
         if (!e.target.composing) {
-          handler(ele, binding)
-          trigger(ele, 'input')
+          let oldValue = ele.value
+          const newValue = handler(ele, binding)
+          // 判断是否需要更新，避免进入死循环
+          if (newValue !== oldValue) {
+            ele.value = newValue
+            trigger(ele, 'input')
+          }
         }
       }
-      ele.addEventListener('keyup', callback)
+      ele.addEventListener('input', callback)
       ele.addEventListener('compositionstart', compositionstart)
       ele.addEventListener('compositionend', compositionend)
       oldData.oldCallback = callback
@@ -66,6 +73,7 @@ const inputMin = (ele, binding) => {
     value = binding.value
   }
   ele.value = value
+  return ele.value
 }
 
 // 输入数字限制最大值
@@ -81,6 +89,7 @@ const inputMax = (ele, binding) => {
     value = binding.value
   }
   ele.value = value
+  return ele.value
 }
 
 /**
@@ -102,6 +111,7 @@ const inputInt = ele => {
     value = ''
   }
   ele.value = value
+  return ele.value
 }
 
 /**
@@ -129,6 +139,7 @@ const inputPoint2 = ele => {
     }
   }
   ele.value = value
+  return ele.value
 }
 
 // 只能输入英文 大小写
@@ -142,6 +153,7 @@ const inputEn = ele => {
     value = ''
   }
   ele.value = value
+  return ele.value
 }
 
 /**
@@ -160,6 +172,7 @@ const inputRegexp = (ele, binding) => {
     value = ''
   }
   ele.value = value
+  return ele.value
 }
 
 export default Vue => {
