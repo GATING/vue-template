@@ -2,6 +2,8 @@
 @import './_color';
 
 body {
-  font-size: 100PX;
-  width: 100px;
+  font-family: $font-family-regular;
+  font-size: 14px;
+  line-height: 1.5;
+  color: $main-color;
 }

@@ -1,28 +1,23 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import { flatten } from 'lodash'
 import Layout from '@/layout'
 
 Vue.use(VueRouter)
+
+const rts = require.context('./modules', true, /\.js$/) // webpack引入方式
+let pageRoutes = flatten(rts.keys().map(e => rts(e).default))
 
 const routes = [
   {
     path: '/',
     component: Layout,
     redirect: '/home',
-    children: [
-      {
-        path: 'home',
-        name: 'home',
-        meta: { title: '首页' },
-        component: () => import('@/views/home/index')
-      }
-    ]
+    children: pageRoutes
   },
   {
-    path: '/login',
-    name: 'login',
-    meta: { title: '登录页' },
-    component: () => import('@/views/login/index')
+    path: '*',
+    redirect: '/'
   }
 ]
 

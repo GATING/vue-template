@@ -1,4 +1,6 @@
+/* eslint-disable camelcase */
 const path = require('path')
+const StylelintPlugin = require('stylelint-webpack-plugin')
 const CompressionWebpackPlugin = require('compression-webpack-plugin')
 function resolve(dir) {
   return path.join(__dirname, dir)
@@ -6,11 +8,13 @@ function resolve(dir) {
 const name = 'gating'
 const port = process.env.port || process.env.npm_config_port || 8848
 
+const isDevelopment = process.env.NODE_ENV === 'development'
+
 module.exports = {
   publicPath: '/',
   outputDir: 'dist',
   assetsDir: 'static',
-  lintOnSave: process.env.NODE_ENV === 'development',
+  lintOnSave: isDevelopment,
   productionSourceMap: false,
   // 默认值，仅作用于生产构建，是否启用多进程打包
   // parallel: require('os').cpus().length > 1,
@@ -22,6 +26,7 @@ module.exports = {
       warnings: false,
       errors: true
     },
+    disableHostCheck: true,
     // 后续加上
     before: require('./mocks'),
     proxy: {
@@ -48,9 +53,10 @@ module.exports = {
       // 配置全局变量
       sass: {
         // 注意：在 sass-loader v7 中，这个选项名是 "data"
+        // 在 sass-loader v10 中，这个选项名是 additionalData
         prependData: `
-            @import "~@/styles/variables";
-            @import "~@/styles/mixins";
+          @import "~@/styles/variables";
+          @import "~@/styles/mixins";
         `
       }
     }
@@ -59,7 +65,12 @@ module.exports = {
     name,
     resolve: {
       alias: {
-        '@': resolve('src')
+        '@': resolve('src'),
+        '@api': resolve('src/api'),
+        '@view': resolve('src/views'),
+        '@style': resolve('src/styles'),
+        '@plugin': resolve('src/plugins'),
+        '@comp': resolve('src/components')
       }
     }
   },
@@ -77,7 +88,29 @@ module.exports = {
     // 预读取，当有很多页面时，会导致太多无意义的请求
     config.plugins.delete('prefetch')
 
-    config.when(process.env.NODE_ENV !== 'development', config => {
+    config.when(isDevelopment, config => {
+      // 开启 stylelint 检验
+      config.plugin('compressionPlugin').use(
+        new StylelintPlugin({
+          files: ['src/**/*.vue', 'src/**/*.scss'],
+          threads: true, // 是否启用多进程
+          fix: true // 打开自动修复-谨慎使用,配置参考同级的stylelint.config.js
+        })
+      )
+    })
+
+    config.when(!isDevelopment, config => {
+      // 删除生产环境下的console和debugger
+      config.optimization
+        .minimize(true)
+        .minimizer('terser')
+        .tap(args => {
+          let { terserOptions } = args[0]
+          terserOptions.compress.drop_console = true
+          terserOptions.compress.drop_debugger = true
+          return args
+        })
+
       // 开启gzip压缩
       config.plugin('compressionPlugin').use(
         new CompressionWebpackPlugin({
@@ -108,6 +141,11 @@ module.exports = {
             test: /[\\/]node_modules[\\/]/, // 匹配对应目录
             priority: 10, // 优先级，数字越大优先级越高，默认为0
             chunks: 'initial' // 打包规则，通常用initial，标识非动态模块打进该vendor，动态模块优化打包
+          },
+          vant: {
+            name: 'chunk-vant',
+            priority: 20,
+            test: /[\\/]node_modules[\\/]_?vant(.*)/
           },
           elementUI: {
             name: 'chunk-elementUI',

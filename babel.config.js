@@ -7,8 +7,6 @@ module.exports = {
     },
     production: {
       plugins: [
-        // 去掉 console.log
-        'transform-remove-console',
         // 按需加载 lodash
         [
           'transform-imports',

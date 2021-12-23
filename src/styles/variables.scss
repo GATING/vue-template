@@ -17,15 +17,23 @@ $font-family-regular: -apple-system, BlinkMacSystemFont, 'PingFang-SC-regular', 
   arial, 'Microsoft YaHei', 'Hiragino Sans GB', 'WenQuanYi Micro Hei', sans-serif;
 
 // 移动端
-$font-family-ultralight: -apple-system, BlinkMacSystemFont, 'PingFangSC-Ultralight',
-  'Source Han Sans CN', 'Helvetica Neue';
-$font-family-regular: -apple-system, BlinkMacSystemFont, 'PingFangSC-Regular', 'Source Han Sans CN',
-  'Helvetica Neue';
-$font-family-medium: -apple-system, BlinkMacSystemFont, 'PingFangSC-Medium',
-  'Source Han Sans CN Medium', 'Helvetica Neue';
-$font-family-thin: -apple-system, BlinkMacSystemFont, 'PingFangSC-Thin', 'Source Han Sans CN Thin',
-  'Helvetica Neue';
-$font-family-light: -apple-system, BlinkMacSystemFont, 'PingFangSC-Light',
-  'Source Han Sans CN Light', 'Helvetica Neue';
-$font-family-semibold: -apple-system, BlinkMacSystemFont, 'PingFangSC-Semibold',
-  'Source Han Sans CN Light', 'Helvetica Neue';
+// $font-family-ultralight: -apple-system, BlinkMacSystemFont, 'PingFangSC-Ultralight',
+//   'Source Han Sans CN', 'Helvetica Neue';
+// $font-family-regular: -apple-system, BlinkMacSystemFont, 'PingFangSC-Regular', 'Source Han Sans CN',
+//   'Helvetica Neue';
+// $font-family-medium: -apple-system, BlinkMacSystemFont, 'PingFangSC-Medium',
+//   'Source Han Sans CN Medium', 'Helvetica Neue';
+// $font-family-thin: -apple-system, BlinkMacSystemFont, 'PingFangSC-Thin', 'Source Han Sans CN Thin',
+//   'Helvetica Neue';
+// $font-family-light: -apple-system, BlinkMacSystemFont, 'PingFangSC-Light',
+//   'Source Han Sans CN Light', 'Helvetica Neue';
+// $font-family-semibold: -apple-system, BlinkMacSystemFont, 'PingFangSC-Semibold',
+//   'Source Han Sans CN Light', 'Helvetica Neue';
+
+:export {
+  default: $main-color;
+  primary: $primary-color;
+  success: $success-color;
+  warning: $warning-color;
+  danger: $danger-color;
+}
