@@ -1,10 +1,31 @@
-$primaryColor: #409eff;
-$warningColor: #e6a23c;
-$dangerColor: #f56c6c;
-$successColor: #67c23a;
-$infoColor: #909399;
-$blackColor: #000;
-$whiteColor: #fff;
-$mainColor: #303133;
-$regularColor: #606266;
-$secondaryColor: #909399;
+$primary-color: #409eff;
+$warning-color: #e6a23c;
+$danger-color: #f56c6c;
+$success-color: #67c23a;
+$info-color: #909399;
+$black-color: #000;
+$white-color: #fff;
+$main-color: #303133;
+$regular-color: #606266;
+$secondary-color: #909399;
+
+// 优雅的选择字体
+// pc端
+$font-family-medium: -apple-system, BlinkMacSystemFont, 'PingFang-SC-medium', helvetica, tahoma,
+  arial, 'Microsoft YaHei', 'Hiragino Sans GB', 'WenQuanYi Micro Hei', sans-serif;
+$font-family-regular: -apple-system, BlinkMacSystemFont, 'PingFang-SC-regular', helvetica, tahoma,
+  arial, 'Microsoft YaHei', 'Hiragino Sans GB', 'WenQuanYi Micro Hei', sans-serif;
+
+// 移动端
+$font-family-ultralight: -apple-system, BlinkMacSystemFont, 'PingFangSC-Ultralight',
+  'Source Han Sans CN', 'Helvetica Neue';
+$font-family-regular: -apple-system, BlinkMacSystemFont, 'PingFangSC-Regular', 'Source Han Sans CN',
+  'Helvetica Neue';
+$font-family-medium: -apple-system, BlinkMacSystemFont, 'PingFangSC-Medium',
+  'Source Han Sans CN Medium', 'Helvetica Neue';
+$font-family-thin: -apple-system, BlinkMacSystemFont, 'PingFangSC-Thin', 'Source Han Sans CN Thin',
+  'Helvetica Neue';
+$font-family-light: -apple-system, BlinkMacSystemFont, 'PingFangSC-Light',
+  'Source Han Sans CN Light', 'Helvetica Neue';
+$font-family-semibold: -apple-system, BlinkMacSystemFont, 'PingFangSC-Semibold',
+  'Source Han Sans CN Light', 'Helvetica Neue';

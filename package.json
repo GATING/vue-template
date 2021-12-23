@@ -1,6 +1,6 @@
 {
   "name": "vue-template",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -9,7 +9,20 @@
     "build": "vue-cli-service build",
     "build:dev": "vue-cli-service build --mode development",
     "build:stage": "vue-cli-service build --mode staging",
-    "lint": "vue-cli-service lint"
+    "style": "stylelint src/**/*.vue src/**/*.scss --fix",
+    "stylelint-check": "stylelint-config-prettier-check",
+    "lint": "vue-cli-service lint && npm run style",
+    "commit": "git add -A && git-cz",
+    "lint-staged": "lint-staged",
+    "commitlint": "commitlint",
+    "review": "jscpd ./src",
+    "version": "node ./build/change-version.js",
+    "release": "bash ./build/release.sh",
+    "release:note": "conventional-changelog --config ./build/changelog-generator/index.js --infile CHANGELOG.md --same-file  -s -r 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GATING/vue-template.git"
   },
   "dependencies": {
     "axios": "^0.20.0",
@@ -19,6 +32,9 @@
     "vuex": "^3.5.1"
   },
   "devDependencies": {
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
+    "@jscpd/badge-reporter": "^3.3.22",
     "@vue/cli-plugin-babel": "^4.5.6",
     "@vue/cli-plugin-eslint": "^4.5.6",
     "@vue/cli-plugin-router": "^4.5.6",
@@ -32,26 +48,52 @@
     "body-parser": "^1.19.0",
     "chalk": "^4.1.0",
     "chokidar": "^3.4.2",
+    "commitizen": "^4.2.2",
+    "commitlint": "^11.0.0",
+    "commitlint-config-cz": "^0.13.2",
     "compression-webpack-plugin": "^6.0.2",
+    "conventional-changelog-cli": "^2.1.1",
+    "cz-customizable": "^6.3.0",
     "eslint": "^6.8.0",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-vue": "^6.2.2",
+    "husky": "^4.3.0",
+    "jscpd": "^3.3.21",
+    "jsinspect": "^0.12.7",
     "lint-staged": "^10.4.0",
     "mockjs": "^1.1.0",
-    "prettier": "^1.19.1",
+    "prettier": "^2.2.1",
     "sass": "^1.26.11",
     "sass-loader": "^8.0.2",
     "script-ext-html-webpack-plugin": "^2.1.4",
+    "stylelint": "^13.8.0",
+    "stylelint-config-prettier": "^8.0.2",
+    "stylelint-config-standard": "^20.0.0",
     "vue-cli-plugin-webpack-bundle-analyzer": "^2.0.0",
     "vue-template-compiler": "^2.6.12"
   },
-  "gitHooks": {
-    "pre-commit": "lint-staged"
+  "husky": {
+    "hooks": {
+      "commit-msg": "npm run commitlint -- -E HUSKY_GIT_PARAMS",
+      "pre-commit": "npm run lint-staged"
+    }
   },
   "lint-staged": {
     "*.{js,vue}": [
-      "vue-cli-service lint",
-      "git add"
+      "prettier --write",
+      "npm run lint"
     ]
-  }
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-customizable"
+    },
+    "cz-customizable": {
+      "config": "./.cz-config.js"
+    }
+  },
+  "bugs": {
+    "url": "https://github.com/GATING/vue-template/issues"
+  },
+  "homepage": "https://github.com/GATING/vue-template#readme"
 }
