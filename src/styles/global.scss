@@ -1,9 +1,18 @@
 @import './_size';
+@import './_flex';
 @import './_color';
+
+html,
+body {
+  height: 100%;
+}
 
 body {
   font-family: $font-family-regular;
   font-size: 14px;
   line-height: 1.5;
   color: $main-color;
+  background: $bg-color;
+  margin: 0;
+  padding: 0;
 }

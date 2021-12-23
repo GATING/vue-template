@@ -16,6 +16,10 @@ const routes = [
     children: pageRoutes
   },
   {
+    path: '/demo',
+    component: () => import('@view/demo/index.vue')
+  },
+  {
     path: '*',
     redirect: '/'
   }

@@ -68,6 +68,7 @@ module.exports = {
         '@': resolve('src'),
         '@api': resolve('src/api'),
         '@view': resolve('src/views'),
+        '@util': resolve('src/utils'),
         '@style': resolve('src/styles'),
         '@plugin': resolve('src/plugins'),
         '@comp': resolve('src/components')

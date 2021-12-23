@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { Loading, Message } from 'element-ui'
 import store from '@/store'
 import { getToken } from './auth'
 import { errorStatus } from './variables'
@@ -10,20 +11,19 @@ let globalLoading = null
 const setLoading = () => {
   loadingNum += 1
   if (loadingNum === 1) {
-    // globalLoading = Loading.service({
-    //   target: '#app',
-    //   background: 'rgba(0,0,0,0.5)',
-    //   // 避免遮罩层级不够
-    //   customClass: 'global-loading'
-    // })
-    globalLoading = 1111
+    globalLoading = Loading.service({
+      target: '#app',
+      background: 'rgba(0,0,0,0.5)',
+      // 避免遮罩层级不够
+      customClass: 'global-loading'
+    })
   }
 }
 const deleteLoading = () => {
   loadingNum -= 1
   if (loadingNum === 0) {
     // 关闭loading
-    globalLoading?.close && globalLoading?.close()
+    globalLoading?.close()
     // 手动释放
     globalLoading = null
   }
@@ -40,6 +40,7 @@ const errorHandler = error => {
   deleteLoading()
   const status = error?.response?.status
   error.message = errorStatus[status] || '未知错误'
+  Message.error(error.message)
   return Promise.reject(error)
 }
 
@@ -52,7 +53,6 @@ service.interceptors.request.use(
     if (store.getters.token) {
       config.headers.token = getToken()
     }
-    config.cancelToken = store.getters.source.token
     return config
   },
   error => errorHandler(error)
@@ -71,10 +71,7 @@ service.interceptors.response.use(
     }
     return Promise.reject(new Error(data.message || 'Error'))
   },
-  error => {
-    if (error instanceof axios.Cancel) return
-    return errorHandler(error)
-  }
+  error => errorHandler(error)
 )
 
 export function post(url, ...config) {
@@ -95,6 +92,3 @@ export function get(url, params, config) {
     ...config
   })
 }
-
-// 捕获reject错误，使得Promise Catch不报错
-window.addEventListener('unhandledrejection', event => event.preventDefault())

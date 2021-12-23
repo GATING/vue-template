@@ -1,4 +1,3 @@
-$size-maps: 10 20 30;
 
 @each $size in $size-maps {
   .pr-#{$size} {
