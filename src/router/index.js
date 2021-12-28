@@ -20,6 +20,10 @@ const routes = [
     component: () => import('@view/demo/index.vue')
   },
   {
+    path: '/demoTest',
+    component: () => import('@view/demo/test.vue')
+  },
+  {
     path: '*',
     redirect: '/'
   }
