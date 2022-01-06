@@ -6,7 +6,12 @@
       overflow: 'hidden'
     }"
   >
-    <span ref="content">
+    <span
+      ref="content"
+      :style="{
+        boxShadow: 'transparent 0 0'
+      }"
+    >
       <slot v-bind="scope" name="before" />
       <span ref="text">{{ realText }}</span>
       <slot v-bind="scope" name="after" />
@@ -15,6 +20,9 @@
 </template>
 
 <script>
+/**
+ * @see <a href="https://github.com/Justineo/vue-clamp">文档同这个</a>
+ */
 import { addListener, removeListener } from './resize-detector'
 export default {
   props: {
@@ -36,6 +44,14 @@ export default {
       type: String,
       default: '…'
     },
+    // 截断后显式省略符号的位置
+    location: {
+      type: String,
+      default: 'end',
+      validator(value) {
+        return ['start', 'middle', 'end'].indexOf(value) !== -1
+      }
+    },
     // 是否展开显式被截断的文本
     expanded: Boolean
   },
@@ -48,7 +64,17 @@ export default {
   },
   computed: {
     clampedText() {
-      return this.text.slice(0, this.offset) + this.ellipsis
+      if (this.location === 'start') {
+        return this.ellipsis + (this.text.slice(0, this.offset) || '').trim()
+      } else if (this.location === 'middle') {
+        const split = Math.floor(this.offset / 2)
+        return (
+          (this.text.slice(0, split) || '').trim() +
+          this.ellipsis +
+          (this.text.slice(-split) || '').trim()
+        )
+      }
+      return (this.text.slice(0, this.offset) || '').trim() + this.ellipsis
     },
     isClamped() {
       if (!this.text) {

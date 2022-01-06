@@ -72,6 +72,21 @@
     </div>
 
     <div>
+      <h1>高亮文本</h1>
+      <div class="align-center mb-10">
+        <el-input v-model="search" placeholder="请输入要搜索的内容" class="w-300 mr-20" />
+        <el-tooltip content="空格分割" placement="top">
+          <el-switch v-model="splitChecked" />
+        </el-tooltip>
+      </div>
+      <div>
+        <div v-for="item in tableData" :key="item.id">
+          <text-highlight :queries="queries">{{ item.name }}</text-highlight>
+        </div>
+      </div>
+    </div>
+
+    <div class="w-300">
       <h1>省略文本</h1>
       <clamp auto-resize :max-lines="1">
         萨达克拉收到货123卡了解到萨达克拉收到货123卡了解到萨达克拉收到货123卡了解到萨达克拉收到货123卡了解到萨达克拉收到货123卡了解到萨达克拉收到货123卡了解到萨达克拉收到货123卡了解到萨达克拉收到货123卡了解到萨达克拉收到货123卡了解到萨达克拉收到货123卡了解到萨达克拉收到货123卡了解到萨达克拉收到货123卡了解到萨达克拉收到货123卡了解到萨达克拉收到货123卡了解到萨达克拉收到货123卡了解到萨达克拉收到货123卡了解到萨达克拉收到货123卡了解到萨达克拉收到货123卡了解到萨达克拉收到货123卡了解到萨达克拉收到货123卡了解到
@@ -86,6 +101,7 @@ import { keys, map } from 'lodash'
 import CommonForm from '@comp/CommonForm/index.vue'
 import CommonTable from '@comp/CommonTable/index.vue'
 import CommonPagination from '@comp/CommonPagination/index.vue'
+import TextHighlight from '@comp/TextHighlight/index.vue'
 import Clamp from '@comp/Clamp/index.vue'
 // 导入scss变量案例
 import color from '@style/colors-export.scss'
@@ -96,6 +112,7 @@ export default {
     Clamp,
     CommonForm,
     CommonTable,
+    TextHighlight,
     CommonPagination
   },
   data() {
@@ -189,7 +206,15 @@ export default {
       ],
       getData: false,
 
-      typeList: map(keys(color), c => c.replace('Color', ''))
+      typeList: map(keys(color), c => c.replace('Color', '')),
+
+      search: '',
+      splitChecked: false
+    }
+  },
+  computed: {
+    queries({ splitChecked, search }) {
+      return splitChecked ? search.split(/\s+/) : this.search
     }
   },
   methods: {
