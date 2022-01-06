@@ -35,7 +35,7 @@ export default {
     content(newVal) {
       if (newVal) {
         if (this.$refs.text) {
-          this.$refs.text == this.maxWidth && (this.show = false)
+          this.$refs.text >= this.maxWidth && (this.show = false)
         }
       }
     }

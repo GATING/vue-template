@@ -28,7 +28,9 @@
     </div>
     <div>
       <h1>commonDetail</h1>
-      <common-detail :list="detailList" />
+      <common-detail :list="detailList">
+        <template v-slot:name>详情</template>
+      </common-detail>
     </div>
   </div>
 </template>
@@ -70,11 +72,16 @@ export default {
             layout: {
               md: 5
             },
+            colStyle: {
+              marginBottom: '30px'
+            },
             textStyle: {
               width: '100px',
               textAlign: 'left'
             },
-            conStyle: {}
+            conStyle: {},
+            // 插槽 自定义内容
+            prop: 'name'
           },
           {
             text: '系统',
