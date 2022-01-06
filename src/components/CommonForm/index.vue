@@ -48,7 +48,7 @@ import ElRadio from './components/Radio.vue'
 import ElUpload from './components/Upload.vue'
 import ElSelect from './components/Select.vue'
 import ElCheckbox from './components/Checkbox.vue'
-import FreeRender from './components/FreeRender'
+import FreeRender from '../FreeRender'
 
 export default {
   name: 'common-form',

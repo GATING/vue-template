@@ -15,7 +15,6 @@
     </div>
     <div>
       <h1>通用Form</h1>
-      <!-- text属性都有默认值 -->
       <common-form
         inline
         :model="form"
@@ -71,6 +70,14 @@
         {{ type }}
       </el-button>
     </div>
+
+    <div>
+      <h1>省略文本</h1>
+      <clamp auto-resize :max-lines="1">
+        萨达克拉收到货123卡了解到萨达克拉收到货123卡了解到萨达克拉收到货123卡了解到萨达克拉收到货123卡了解到萨达克拉收到货123卡了解到萨达克拉收到货123卡了解到萨达克拉收到货123卡了解到萨达克拉收到货123卡了解到萨达克拉收到货123卡了解到萨达克拉收到货123卡了解到萨达克拉收到货123卡了解到萨达克拉收到货123卡了解到萨达克拉收到货123卡了解到萨达克拉收到货123卡了解到萨达克拉收到货123卡了解到萨达克拉收到货123卡了解到萨达克拉收到货123卡了解到萨达克拉收到货123卡了解到萨达克拉收到货123卡了解到萨达克拉收到货123卡了解到
+        <el-button slot="after" icon="el-icon-delete"></el-button>
+      </clamp>
+    </div>
   </div>
 </template>
 
@@ -79,12 +86,14 @@ import { keys, map } from 'lodash'
 import CommonForm from '@comp/CommonForm/index.vue'
 import CommonTable from '@comp/CommonTable/index.vue'
 import CommonPagination from '@comp/CommonPagination/index.vue'
+import Clamp from '@comp/Clamp/index.vue'
 // 导入scss变量案例
 import color from '@style/colors-export.scss'
 import { validateRequired } from '@util/validate'
 
 export default {
   components: {
+    Clamp,
     CommonForm,
     CommonTable,
     CommonPagination

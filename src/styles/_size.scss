@@ -1,4 +1,3 @@
-
 @each $size in $size-maps {
   .pr-#{$size} {
     padding-right: #{$size}px;
@@ -29,5 +28,14 @@
   }
   .m-#{$size} {
     margin: #{$size}px;
+  }
+}
+
+@each $size in $width-map {
+  .w-#{$size} {
+    width: #{$size}px;
+  }
+  .h-#{$size} {
+    height: #{$size}px;
   }
 }
