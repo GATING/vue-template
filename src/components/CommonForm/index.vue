@@ -1,5 +1,13 @@
 <template>
-  <el-form v-bind="$attrs" v-on="$listeners" id="business-common-form" ref="form" :model="model">
+  <el-form
+    v-bind="$attrs"
+    v-on="$listeners"
+    id="business-common-form"
+    ref="form"
+    :model="model"
+    @submit.prevent
+    @keyup.enter.native="search"
+  >
     <el-form-item v-bind="field" v-for="(field, idx) in fieldList" :key="idx" :prop="field.value">
       <!-- label -->
       <template slot="label">
@@ -30,12 +38,12 @@
     </el-form-item>
     <template v-if="$scopedSlots.actions">
       <el-form-item>
-        <slot name="actions" v-bind="{ ref: $refs }" />
+        <slot v-bind="{ ref: $refs }" name="actions" />
       </el-form-item>
     </template>
     <template v-else>
       <el-form-item>
-        <el-button @click="search" type="primary">{{ confirmText }}</el-button>
+        <el-button type="primary" @click="search">{{ confirmText }}</el-button>
         <el-button @click="reset">{{ resetText }}</el-button>
       </el-form-item>
     </template>
@@ -47,6 +55,7 @@
 import ElRadio from './components/Radio.vue'
 import ElUpload from './components/Upload.vue'
 import ElSelect from './components/Select.vue'
+import RemoteSelect from './components/RemoteSelect.vue'
 import ElCheckbox from './components/Checkbox.vue'
 import FreeRender from '../FreeRender'
 
@@ -57,6 +66,7 @@ export default {
     ElUpload,
     ElSelect,
     ElCheckbox,
+    RemoteSelect,
     FreeRender
   },
   props: {

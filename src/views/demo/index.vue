@@ -122,6 +122,7 @@ export default {
         name: '',
         sex: '',
         time: '',
+        hobby: '',
         // 头像
         avatar: []
       },
@@ -135,6 +136,29 @@ export default {
           value: 'sex',
           list: 'sexList',
           component: 'el-select'
+        },
+        {
+          label: '爱好',
+          value: 'hobby',
+          list: [
+            {
+              name: '不限',
+              id: ''
+            },
+            {
+              name: '游泳',
+              id: 1
+            },
+            {
+              name: '射击',
+              id: 2
+            }
+          ],
+          component: 'el-select',
+          extraProps: {
+            valueKey: 'id',
+            labelKey: 'name'
+          }
         },
         {
           label: '日期',
