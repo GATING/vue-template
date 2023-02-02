@@ -1,7 +1,7 @@
 <template>
   <div>
-    <input type="text" v-model="form.user" />
-    <input type="text" v-model="form.pass" />
+    <input type="text" placeholder="gating" class="mr-10" v-model="form.user" />
+    <input type="text" placeholder="123456" class="mr-10" v-model="form.pass" />
     <input type="button" @click="login" value="登录" />
   </div>
 </template>
@@ -11,8 +11,8 @@ export default {
   data() {
     return {
       form: {
-        user: '',
-        pass: ''
+        user: 'gating',
+        pass: '123456'
       },
       redirect: undefined,
       otherQuery: {}
@@ -28,6 +28,9 @@ export default {
       },
       immediate: true
     }
+  },
+  mounted() {
+    this.$log.capsule('title')
   },
   methods: {
     async login() {

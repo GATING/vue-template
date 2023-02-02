@@ -1,5 +1,7 @@
 module.exports = {
   extends: ['stylelint-config-standard', 'stylelint-config-prettier'],
+  // 不要加入js或html文件，会发生问题，这些文件请手动修复
+  ignoreFiles: ['**/*.js', '**/*.html'],
   rules: {
     // 属性值 0 后面不加单位
     'length-zero-no-unit': true,
@@ -30,7 +32,21 @@ module.exports = {
     'at-rule-no-unknown': [
       true,
       {
-        ignoreAtRules: ['function', 'if', 'each', 'include', 'mixin']
+        ignoreAtRules: ['function', 'if', 'each', 'include', 'mixin', 'extend']
+      }
+    ],
+    // scss-module导出变量的报错
+    'selector-pseudo-class-no-unknown': [
+      true,
+      {
+        ignorePseudoClasses: ['global', 'export', 'import', 'local']
+      }
+    ],
+    // scss-module导出自定义变量报错
+    'property-no-unknown': [
+      true,
+      {
+        ignoreSelectors: [':export']
       }
     ]
   }

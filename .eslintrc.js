@@ -35,7 +35,7 @@ module.exports = {
     'prefer-template': 2,
     'template-curly-spacing': [2, 'never'],
     // 不要在字符串中使用不必要的转义字符
-    'no-useless-escape': 2,
+    'no-useless-escape': 0,
     // 使用具名函数表达式而非函数声明
     'func-style': [2, 'declaration', { allowArrowFunctions: true }],
     // 用圆括号包裹自执行匿名函数
@@ -59,7 +59,7 @@ module.exports = {
     // 访问属性时使用.
     'dot-notation': 2,
     // 避免在赋值中的=前后换行. 如果要换行的话使用圆括号包裹 max-len
-    'operator-linebreak': [2, 'after'],
+    'operator-linebreak': [2, 'after', { overrides: { '?': 'ignore', ':': 'ignore' } }],
     // 不允许出现未被使用的变量.
     'no-unused-vars': 2,
     // 如果使用if和else多行代码块，把else放到和if块的闭合括号同一行
@@ -95,7 +95,7 @@ module.exports = {
     // 不要用,作为行的开始
     'comma-style': 1,
     // 避免单字母名字. 命名需要有可描述性.
-    'id-length': [2, { exceptions: ['i', 'h', 'e'] }],
+    // 'id-length': [2, { exceptions: ['i', 'h', 'e'] }],
     // 命名对象，函数和实例时使用驼峰风格.
     camelcase: 2,
     // 仅当命名构造函数或类的时候使用帕斯卡风格.

@@ -1,39 +1,12 @@
-.text-primary {
-  color: $primary-color;
-}
+$names: 'primary', 'warning', 'danger', 'success', 'info', 'black', 'white', 'main', 'regular',
+  'secondary';
+$colors: $primary-color, $warning-color, $danger-color, $success-color, $info-color, $black-color,
+  $white-color, $main-color, $regular-color, $secondary-color;
 
-.text-warning {
-  color: $warning-color;
-}
-
-.text-danger {
-  color: $danger-color;
-}
-
-.text-success {
-  color: $success-color;
-}
-
-.text-info {
-  color: $info-color;
-}
-
-.text-black {
-  color: $black-color;
-}
-
-.text-white {
-  color: $white-color;
-}
-
-.text-main {
-  color: $main-color;
-}
-
-.text-regular {
-  color: $regular-color;
-}
-
-.text-secondary {
-  color: $secondary-color;
+$i: 0;
+@each $name in $names {
+  $i: $i + 1;
+  .text-#{$name} {
+    color: nth($colors, $i);
+  }
 }
