@@ -71,7 +71,8 @@ module.exports = {
         '@style': resolve('src/styles'),
         '@plugin': resolve('src/plugins'),
         '@comp': resolve('src/components')
-      }
+      },
+      extensions: ['js', 'css', 'scss', 'vue']
     }
   },
   chainWebpack(config) {
@@ -115,7 +116,7 @@ module.exports = {
       config.plugin('compressionPlugin').use(
         new CompressionWebpackPlugin({
           algorithm: 'gzip',
-          test: new RegExp('\\.(css|js)$'),
+          test: /\.(css|js)$/,
           threshold: 10240,
           minRatio: 0.8
         })
@@ -144,7 +145,7 @@ module.exports = {
           },
           vant: {
             name: 'chunk-vant',
-            priority: 20,
+            priority: 20, // 需要大于libs和app，否则将打包成libs或app
             test: /[\\/]node_modules[\\/]_?vant(.*)/
           },
           elementUI: {
@@ -161,9 +162,9 @@ module.exports = {
           },
           echarts: {
             name: 'chunk-echarts',
-            test: /[\\/]node_modules[\\/](vue-)?echarts[\\/]/,
+            test: /[\\/]node_modules[\\/]_?(vue-)?echarts(.*)/,
             chunks: 'all', // 匹配文件，无论是否动态模块，都打包进该vendor
-            priority: 4,
+            priority: 20,
             reuseExistingChunk: true
           }
         }
