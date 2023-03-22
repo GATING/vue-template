@@ -2,6 +2,7 @@
   <div>
     <router-link :to="toPath">{{ fullPath }}</router-link>
     <p>随机数：{{ random }}</p>
+    <button @click="tj">调整</button>
   </div>
 </template>
 
@@ -18,6 +19,11 @@ export default {
     },
     fullPath() {
       return this.$route.fullPath
+    }
+  },
+  methods: {
+    tj() {
+      this.$router.push('/test/testone/one')
     }
   }
 }
