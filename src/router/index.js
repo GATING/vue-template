@@ -32,7 +32,7 @@ const routes = [
             path: 'one',
             name: 'Testoneone',
             meta: { title: '测试1-1', icon: 'user' },
-            component: resolve => require(['@/views/test/testone/index'], resolve)
+            component: resolve => require(['@/views/test/testOne/index'], resolve)
           }
         ]
       }
