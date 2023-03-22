@@ -23,7 +23,7 @@ export default {
   },
   methods: {
     tj() {
-      this.$router.push('/test/testone/one')
+      this.$router.push('/test/testOne/one')
     }
   }
 }
