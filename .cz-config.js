@@ -38,16 +38,31 @@ module.exports = {
     }
   ],
   messages: {
-    type: '选择你提交的信息类型:',
-    scope: '选择本次提交的改变所影响的范围？',
-    customScope: '本次提交的改变所影响的范围？',
-    subject: '写一个简短的变化描述，尽量包含主谓宾结构，杜绝简单的单词：\n',
-    body: '提供更详细的变更描述 (按 enter 跳过). 使用 "|" 换行：\n',
-    breaking: '列出所有的不兼容变更 (按 enter 跳过)：\n',
-    footer: '列出此次改动解决的所有 issues （如："#123, #234"）(按 enter 跳过)：\n',
-    confirmCommit: '确认提交以上内容信息？'
+    type: '选择你提交的信息类型：',
+    scope: '\n选择一个 scope（可选）：',
+    customScope: '请输入自定义的 scope：',
+    subject: '填写简短精炼的变更描述：\n',
+    body: '填写更加详细的变更描述（可选）。使用 "|" 换行：\n',
+    breaking: '列举非兼容性重大的变更（可选）：\n',
+    footer: '列举出所有变更的 ISSUES CLOSED（可选）。 例如: #31, #34：\n',
+    confirmCommit: '确认提交？'
   },
-  scopes: [],
+  scopes: [
+    ['projects', '项目搭建'],
+    ['components', '组件相关'],
+    ['views', '页面相关'],
+    ['hooks', 'hook 相关'],
+    ['utils', 'utils 相关'],
+    ['styles', '样式相关'],
+    ['deps', '项目依赖'],
+    ['other', '其他修改'],
+    ['custom', '以上都不是？我要自定义']
+  ].map(([value, description]) => {
+    return {
+      value,
+      name: `${value.padEnd(30)} (${description})`
+    }
+  }),
   allowCustomScopes: true,
   allowBreakingChanges: ['feat', 'fix'],
   // skip any questions you want
