@@ -60,6 +60,10 @@ export default {
   },
   mounted() {
     this.setCache(this.$route)
+    window.addEventListener('popstate', this.goBack, false)
+  },
+  beforeDestroy() {
+    window.removeEventListener('popstate', this.goBack, false)
   },
   methods: {
     setCache(route) {
@@ -73,10 +77,22 @@ export default {
           meta
         })
         this.$store.commit('app/SET_CACHE', cacheList)
-      } else {
-        this.$store.commit('app/DEL_CACHE', this.lastRoute)
       }
-    }
+    },
+    goBack() {
+      const { cacheList, lastRoute } = this
+      let path = lastRoute
+      let index = cacheList.findIndex(item => item.fullPath === path)
+      if (index > -1) {
+        const needDelete = cacheList.length != 1
+        if (needDelete) {
+          this.$store.commit(
+            'app/SET_CACHE',
+            cacheList.filter((e, i) => i !== index)
+          )
+        }
+      }
+    },
   }
 }
 </script>
