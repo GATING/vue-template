@@ -92,7 +92,7 @@ export default {
           )
         }
       }
-    },
+    }
   }
 }
 </script>
