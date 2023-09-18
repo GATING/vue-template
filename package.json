@@ -28,6 +28,7 @@
     "axios": "^0.20.0",
     "core-js": "^3.6.5",
     "element-ui": "^2.15.6",
+    "lodash": "^4.17.21",
     "vue": "^2.6.12",
     "vue-router": "^3.4.4",
     "vuex": "^3.5.1"
@@ -36,6 +37,7 @@
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
     "@jscpd/badge-reporter": "^3.3.22",
+    "@vue/babel-helper-vue-jsx-merge-props": "^1.4.0",
     "@vue/cli-plugin-babel": "^4.5.6",
     "@vue/cli-plugin-eslint": "^4.5.6",
     "@vue/cli-plugin-router": "^4.5.6",
